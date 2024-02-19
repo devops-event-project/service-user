@@ -22,10 +22,6 @@ oauth2_bearer = OAuth2PasswordBearer(tokenUrl='user/auth/token')
 # --- Private Methods ---------------------------------------------------------
 def authenticate_user(username: str, password: str):
     user = conn.local.user.find_one({'username':username})
-    print("-----------")
-    print("-----------")
-    print(user)
-    print("-----------")
     if not user:
         return False
     if not bcrypt_context.verify(password, user['password']):
