@@ -7,4 +7,4 @@ RUN pip3 install --no-cache-dir --upgrade -r requirements.txt
 COPY . /service-user
 EXPOSE 8080
 
-CMD ["uvicorn", "index:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "index:service_user", "--host", "0.0.0.0", "--port", "8080"]

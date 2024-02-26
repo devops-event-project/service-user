@@ -1,6 +1,6 @@
 version: '4.27.1'
 services:
-  app:
+  service_user:
     container_name: service_user
     build: .
     ports:
@@ -12,4 +12,4 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ./data:/data/db
+     - "/var/lib/mongodb-user:/data/db"

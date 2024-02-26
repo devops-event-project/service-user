@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from routes.user import user
 
-app = FastAPI()
+service_user = FastAPI()
 
-app.include_router(user)
+service_user.include_router(user)
 
 # user_dependency = Annotated[dict, Depends(get_current_user)]
 
