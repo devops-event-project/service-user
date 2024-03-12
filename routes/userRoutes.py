@@ -43,6 +43,7 @@ async def login(response: Response, form_data: OAuth2PasswordRequestForm = Depen
     access_token = create_access_token(user_data, access_token_expires)
 
     response.set_cookie(key="accesss_token", value=access_token, httponly=True)
+    print('hey')
     return {
         'access_token': access_token, 
         'token_type': 'bearer'
