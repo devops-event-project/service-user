@@ -6,10 +6,10 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - shared_network
+      - service-event_shared_network1
 
 networks:
-  shared_network:
+  service-event_shared_network1:
     external: true
 
   #   depends_on:
