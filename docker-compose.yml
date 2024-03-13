@@ -5,18 +5,25 @@ services:
     build: .
     ports:
       - "8080:8080"
-    depends_on:
-      - mongo
-  mongo:
-    image: mongo
-    ports:
-      - "27017:27017"
-    volumes:
-     - "/var/lib/mongodb-user:/data/db"
-  front_end_server:
-    container_name: front_end_server
-    build: /home/borja/Escritorio/DevOps/devops-event-project/front-end-server
-    ports: 
-      - "3000:3000"
-    depends_on:
-      - service_user
+    networks:
+      - shared_network
+
+networks:
+  shared_network:
+    external: true
+
+  #   depends_on:
+  #     - mongo
+  # mongo:
+  #   image: mongo
+  #   ports:
+  #     - "27017:27017"
+  #   volumes:
+  #    - "/var/lib/mongodb-user:/data/db"
+  # front_end_server:
+  #   container_name: front_end_server
+  #   build: /home/borja/Escritorio/DevOps/devops-event-project/front-end-server
+  #   ports: 
+  #     - "3000:3000"
+  #   depends_on:
+  #     - service_user
