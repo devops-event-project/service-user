@@ -6,11 +6,11 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - service-event_shared_network1
+      - shared_network1
 
 networks:
-  service-event_shared_network1:
-    external: true
+  shared_network1:
+    driver: bridge
 
   #   depends_on:
   #     - mongo
