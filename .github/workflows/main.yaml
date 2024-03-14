@@ -1,8 +1,6 @@
 name: Build Test and push
 on:
   workflow_dispatch:
-env:
-  IMAGE_NAME: 471112565104.dkr.ecr.eu-central-1.amazonaws.com/calendar:service_user
 
 jobs:
   build:
