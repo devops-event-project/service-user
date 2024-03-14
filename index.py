@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from routes.userRoutes import user
 
@@ -6,7 +6,7 @@ service_user = FastAPI()
 
 service_user.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://0.0.0.0:3000"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

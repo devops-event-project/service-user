@@ -4,7 +4,7 @@ from starlette import status
 from datetime import timedelta
 from bson import ObjectId
 
-from config.database.connection import db
+from config.database.connection import users
 from config.security.auth import get_current_user, create_access_token, ACCESS_TOKEN_EXPIRES_MINUTES
 from models.userModel import User
 from controller.userController import create_user, authenticate_user
@@ -15,16 +15,16 @@ user = APIRouter(prefix='/user')
 
 @user.get('/', tags=["Get Methods"])
 async def find_all_users(user: User = Depends(get_current_user)):
-    return serializeList(db.local.user.find())
+    return serializeList(users.find())
 
 @user.get('/{id}', tags=["Get Methods"])
 async def fine_one_user(id: str, user: User = Depends(get_current_user)):
-    return serializeDict(db.local.user.find_one({"_id":ObjectId(id)}))
+    return serializeDict(users.find_one({"_id":ObjectId(id)}))
 
 @user.post('/register', tags=["Post Methods"])
 async def register(user: User):
     user = create_user(user)
-    return serializeDict(db.local.user.find_one({"_id":user.inserted_id}))
+    return serializeDict(users.find_one({"_id":user.inserted_id}))
 
 @user.post('/login', tags=["Post Methods"], response_model=UserToken)
 async def login(response: Response, form_data: OAuth2PasswordRequestForm = Depends()):
@@ -42,7 +42,7 @@ async def login(response: Response, form_data: OAuth2PasswordRequestForm = Depen
     }
     access_token = create_access_token(user_data, access_token_expires)
 
-    response.set_cookie(key="accesss_token", value=access_token, httponly=True)
+    response.set_cookie(key="access_token", value=access_token, httponly=True)
     print('hey')
     return {
         'access_token': access_token, 
@@ -51,9 +51,9 @@ async def login(response: Response, form_data: OAuth2PasswordRequestForm = Depen
 
 @user.put('/{id}', tags=["Put Methods"])
 async def update_user(id: str, user: User = Depends(get_current_user)):
-    db.local.user.find_one_and_update({"_id":ObjectId(id)},{"$set":dict(user)})
-    return serializeDict(db.local.user.find_one({"_id":ObjectId(id)}))
+    users.find_one_and_update({"_id":ObjectId(id)},{"$set":dict(user)})
+    return serializeDict(users.find_one({"_id":ObjectId(id)}))
 
 @user.delete('/{id}', tags=["Delete Methods"])
 async def delete_user(id: str, user: User = Depends(get_current_user)):
-    return serializeDict(db.local.user.find_one_and_delete({"_id":ObjectId(id)}))
+    return serializeDict(users.find_one_and_delete({"_id":ObjectId(id)}))

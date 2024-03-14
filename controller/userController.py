@@ -1,6 +1,6 @@
 from models.userModel import User
 from config.security.auth import verify_password, pwd_context
-from config.database.connection import db
+from config.database.connection import users
 
 def create_user(user: User):
     new_user = User(
@@ -11,13 +11,13 @@ def create_user(user: User):
     )
 
     try:
-        new_user = db.local.user.insert_one(dict(new_user))
+        new_user = users.insert_one(dict(new_user))
     except:
         return False
     return new_user
     
 def get_user_by_username(username: str):
-    return db.local.user.find_one({'username':username})
+    return users.find_one({'username':username})
 
 def authenticate_user(username: str, password: str):
     user = get_user_by_username(username)
