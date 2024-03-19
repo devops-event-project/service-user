@@ -1,7 +1,7 @@
 import os
 from pymongo import MongoClient
 
-db_host = os.getenv("DB_HOST", "localhost")
+db_host = os.getenv("DB_HOST", "mongo")
 db_port = os.getenv("DB_PORT", 27017)
 
 print(f"mongodb://{db_host}:{db_port}")
