@@ -1,6 +1,9 @@
 name: Build Test and push
 on:
   workflow_dispatch:
+env:
+  IMAGE_NAME: service_user
+  REPO_NAME: anandanlk
 
 jobs:
   build:
