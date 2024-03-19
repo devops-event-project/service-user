@@ -1,19 +1,25 @@
-version: '4.27.1'
+version: '3.8'
 services:
   service_user:
     container_name: service_user
     build: .
     ports:
       - "8080:8080"
+#     networks:
+#       - shared_network1
+
+# networks:
+#   shared_network1:
+#     driver: bridge
+
     depends_on:
       - mongo
-
   mongo:
     image: mongo
     ports:
       - "27017:27017"
-    # volumes:
-    #  - "/var/lib/mongodb-user:/data/db"
+    volumes:
+     - "/var/lib/mongodb-user:/data/db"
   # front_end_server:
   #   container_name: front_end_server
   #   build: /home/borja/Escritorio/DevOps/devops-event-project/front-end-server
