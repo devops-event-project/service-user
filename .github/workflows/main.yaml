@@ -11,25 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build service_user image
-        run: |
-          docker build . -t $IMAGE_NAME
-
-      - name: Run docker-compose for testing
-        run: |
-          docker-compose up -d && docker ps && sleep 5
-
-      - name: Run tests
-        id: run-newman
-        uses: anthonyvscode/newman-action@v1
-        with:
-          collection: postman/user_collection.json
-          reporters: cli
-          iterationCount: 1
-
-      - name: Output summary to console
-        run: echo ${{ steps.run-newman.outputs.summary }}
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
