@@ -10,6 +10,17 @@ from models.userModel import User
 from controller.userController import create_user, authenticate_user
 from schemas.userSchemas import UserToken, serializeDict, serializeList
 
+"""
+Defines API routes for user management in a FastAPI application, including 
+user registration, login, retrieval, updating, and deletion.
+Authentication is handled through JWT tokens, with the routes utilizing
+dependencies for user verification and token generation.
+Operations interact with a MongoDB database, using serialization functions
+to format the database responses. The login endpoint also sets a 
+secure cookie with the access token for enhanced security.
+"""
+
+
 # Creating a router for user endpoints
 user = APIRouter(prefix='/user')
 

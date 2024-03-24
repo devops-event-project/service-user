@@ -2,6 +2,13 @@ from models.userModel import User
 from config.security.auth import verify_password, pwd_context
 from config.database.connection import users
 
+"""
+Manages user authentication and registration processes including functionality
+to create new users with hashed passwords, authenticate users by verifying
+their passwords, and retrieve user information from the database.
+"""
+
+
 def create_user(user: User):
     """
     Creates a new user in the database.

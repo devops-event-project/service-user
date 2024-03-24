@@ -8,6 +8,18 @@ from datetime import timedelta, datetime
 
 from config.security.cookie import OAuth2PasswordBearerWithCookie
 
+"""
+This module integrates security and authentication mechanisms with the FastAPI
+utilizing password hashing, JWT token generation and validation, and user authentication.
+It defines utility functions for hashing passwords, verifying hashed passwords,
+creating JWT access tokens with custom expiration times, and extracting and validating
+user information from JWT tokens.
+The module employs the Passlib library for secure password handling, the python-jose
+library for JWT operations, and a custom OAuth2 bearer class that supports
+cookie-based token retrieval.
+"""
+
+
 SECRET_KEY = 'zd%t00xw9-&h1#shs$aqguplrc=$x@3jlh1_kwtd7u8z!@i$ym'
 ALGORITHM = 'HS256'
 ACCESS_TOKEN_EXPIRES_MINUTES = 60

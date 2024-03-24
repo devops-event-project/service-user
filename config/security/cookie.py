@@ -4,6 +4,12 @@ from fastapi.openapi.models import OAuthFlows as OAuthFlowsModel
 from fastapi import Request,status,HTTPException
 from fastapi.security.utils import get_authorization_scheme_param
 
+"""
+This class, OAuth2PasswordBearerWithCookie, inherits from FastAPI's OAuth2 and 
+overrides it to retrieve the access token from a cookie offering an authentication mechanism.
+"""
+
+
 class OAuth2PasswordBearerWithCookie(OAuth2):
     def __init__(
         self,
